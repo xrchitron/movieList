@@ -9,6 +9,7 @@
       rel="stylesheet"
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous" />
+    <link href="./../style/style.css" rel="stylesheet" type="text/css" />
     <title>Movie List</title>
   </head>
   <body>
@@ -40,20 +41,37 @@
     </nav>
     <!-- Search Bar -->
     <!-- mt-5 //margin-top helper class -->
-    <div class="container mt-5">
-      <div class="row">
-        <form class="row row-cols-lg-auto g-3 align-items-center" id="search-form">
-          <div class="col-12">
-            <label class="visually-hidden" for="inlineFormInputGroupUsername">Search Keyword</label>
-            <div class="input-group">
-              <input type="text" class="form-control" id="search-input" placeholder="Keywords..." />
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col-auto">
+          <form class="row row-cols-lg-auto my-3" id="search-form">
+            <div class="col-12">
+              <label class="visually-hidden" for="inlineFormInputGroupUsername"
+                >Search Keyword</label
+              >
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="search-input"
+                  placeholder="Keywords..." />
+              </div>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary" id="search-submit">Submit</button>
+            </div>
+          </form>
+        </div>
+        <div class="col-auto align-self-center" id="display-mode">
+          <div class="row my-3">
+            <div class="col-auto">
+              <i class="fa-solid fa-grip fa-xl"></i>
+            </div>
+            <div class="col-auto">
+              <i class="fa-solid fa-bars fa-xl"></i>
             </div>
           </div>
-
-          <div class="col-12">
-            <button type="submit" class="btn btn-primary" id="search-submit">Submit</button>
-          </div>
-        </form>
+        </div>
       </div>
 
       <div class="row" id="data-panel">

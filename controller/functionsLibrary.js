@@ -7,6 +7,7 @@ const dataPanel = document.querySelector("#data-panel");
 const searchForm = document.querySelector("#search-form");
 const searchInput = document.querySelector("#search-input");
 const paginator = document.querySelector("#paginator");
+const displayMode = document.querySelector("#display-mode");
 const favoriteList = JSON.parse(localStorage.getItem("favoriteMovies")) || [];
 let filteredMovies = [];
 
