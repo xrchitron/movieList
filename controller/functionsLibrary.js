@@ -10,8 +10,13 @@ const paginator = document.querySelector("#paginator");
 const displayMode = document.querySelector("#display-mode");
 const favoriteList = JSON.parse(localStorage.getItem("favoriteMovies")) || [];
 let filteredMovies = [];
+const DISPLAY_MODE = {
+  CardMode: "CardMode",
+  ListMode: "ListMode",
+};
+let currentMode = DISPLAY_MODE.CardMode;
 
-function renderMovieList(data) {
+function renderMovieCard(data) {
   let rawHTML = "";
 
   //processing
@@ -46,6 +51,32 @@ function renderMovieList(data) {
     `;
   });
 
+  dataPanel.innerHTML = rawHTML;
+}
+
+function renderMovieList(data) {
+  let rawHTML = "";
+  rawHTML += `<ul class="list-group">`;
+  //processing
+  data.forEach((item) => {
+    //title, id
+    rawHTML += `
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            ${item.title}
+            <div>
+              <button
+                class="btn btn-primary btn-show-movie"
+                data-bs-toggle="modal"
+                data-bs-target="#movie-modal"
+                data-id="${item.id}">
+                More
+              </button>
+              <button class="btn btn-info btn-add-favorite" data-id="${item.id}">+</button>
+            </div>
+          </li>
+    `;
+  });
+  rawHTML += `</ul>`;
   dataPanel.innerHTML = rawHTML;
 }
 
@@ -110,5 +141,5 @@ function removeFromFavorite(id) {
   //store the information back to local storage
   localStorage.setItem("favoriteMovies", JSON.stringify(favoriteList));
   //refresh page
-  renderMovieList(favoriteList);
+  renderMovieCard(favoriteList);
 }

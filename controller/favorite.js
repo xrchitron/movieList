@@ -5,4 +5,4 @@ dataPanel.addEventListener("click", function onPanelClicked(event) {
     removeFromFavorite(Number(event.target.dataset.id));
   }
 });
-renderMovieList(favoriteList);
+renderMovieCard(favoriteList);
