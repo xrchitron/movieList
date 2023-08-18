@@ -8,8 +8,8 @@ const searchForm = document.querySelector("#search-form");
 const searchInput = document.querySelector("#search-input");
 const paginator = document.querySelector("#paginator");
 const favoriteList = JSON.parse(localStorage.getItem("favoriteMovies")) || [];
-
 let filteredMovies = [];
+
 function renderMovieList(data) {
   let rawHTML = "";
 
@@ -93,4 +93,21 @@ function addToFavorite(id) {
   }
   list.push(movie);
   localStorage.setItem("favoriteMovies", JSON.stringify(list));
+}
+
+function removeFromFavorite(id) {
+  // const targetMovie = favoriteList.find((item) => item.id === id);
+  // const targetIndex = favoriteList.indexOf(targetMovie);
+  if (!favoriteList || !favoriteList.length) return;
+
+  // find index through id to remove the movie
+  const targetIndex = favoriteList.findIndex((item) => item.id === id);
+  if (targetIndex === -1) return;
+
+  //remove the target movie
+  favoriteList.splice(targetIndex, 1);
+  //store the information back to local storage
+  localStorage.setItem("favoriteMovies", JSON.stringify(favoriteList));
+  //refresh page
+  renderMovieList(favoriteList);
 }
