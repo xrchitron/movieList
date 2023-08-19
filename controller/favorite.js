@@ -6,3 +6,4 @@ dataPanel.addEventListener("click", function onPanelClicked(event) {
   }
 });
 renderMovieCard(favoriteList);
+renderPaginator(favoriteList.length);

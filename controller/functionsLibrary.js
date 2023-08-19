@@ -117,14 +117,12 @@ function showMovieModal(id) {
 }
 
 function addToFavorite(id) {
-  //   console.log(id); //To check whether get the id correctly
-  const list = JSON.parse(localStorage.getItem("favoriteMovies")) || [];
   const movie = movies.find((movie) => movie.id === id);
-  if (list.some((movie) => movie.id === id)) {
+  if (favoriteList.some((movie) => movie.id === id)) {
     return alert("This film has colleted in the favorite library.");
   }
-  list.push(movie);
-  localStorage.setItem("favoriteMovies", JSON.stringify(list));
+  favoriteList.push(movie);
+  localStorage.setItem("favoriteMovies", JSON.stringify(favoriteList));
 }
 
 function removeFromFavorite(id) {

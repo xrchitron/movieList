@@ -47,19 +47,23 @@ paginator.addEventListener("click", function onPaginatorClicked(event) {
   } else {
     renderMovieList(getMoviesByPage(page));
   }
+  console.log(page);
+  //record current page
+  sessionStorage.setItem("currentPage", JSON.stringify(page));
 });
 
 displayMode.addEventListener("click", function onDisplayModeClicked(event) {
-  console.log("clicked");
-  console.log(event.target.classList);
+  const currentPage = Number(JSON.parse(sessionStorage.getItem("currentPage")));
   if (event.target.classList.contains("fa-grip")) {
     //switch to CardMode
     currentMode = DISPLAY_MODE.CardMode;
-    renderMovieCard(getMoviesByPage(1));
+    console.log(currentPage);
+    renderMovieCard(getMoviesByPage(currentPage));
   } else if (event.target.classList.contains("fa-bars")) {
     //switch to ListMode
     currentMode = DISPLAY_MODE.ListMode;
-    renderMovieList(getMoviesByPage(1));
+    console.log(currentPage);
+    renderMovieList(getMoviesByPage(currentPage));
   }
 });
 
@@ -69,6 +73,7 @@ axios
     movies.push(...response.data.results);
     renderPaginator(movies.length);
     renderMovieCard(getMoviesByPage(1));
+    sessionStorage.setItem("currentPage", JSON.stringify(1));
   })
   .catch((error) => {
     console.log(error);
